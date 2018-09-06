@@ -230,3 +230,9 @@ El modelo está en '-api' y el servicio y persistencia en '-service'
 
 CRUD en ProyectoLocalServiceImpl y ProyectoServiceImpl
 
+
+
+## BaseMVCActionCommand
+
+
+
