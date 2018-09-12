@@ -13,4 +13,5 @@
 * [Liferay 7 & npm-liferay-bundler](liferay-7-and-npm-liferay-bundler.md)
 * [Liferay 7](liferay-7.md)
 * [Maven](maven.md)
+* [Liferay 6.1](liferay-6.1.md)
 
