@@ -7,6 +7,7 @@
 * Subclipse
 * MySQL Server 5.7
 * mysql-connector jar
+  * %TOMCAT%/lib/ext
 
 
 
