@@ -1,6 +1,6 @@
 # Liferay 7
 
-##  Instalación
+## Instalación
 
 * Introducir el nombre del portal
 * Escoger idioma del portal
