@@ -301,3 +301,156 @@ indexer.delete(ENTITY);
 
 Para que el **Asset Publisher de Liferay** muestre la entidad, la entidad debe tener un **Asset Renderer**. 
 
+### Implementar Asset Categories y tags
+
+Permite a los autores especificar tags y categorias para las entidades en la Vista. JSP Tags de Liferay permiten mostrar las categorias y las etiquetas.
+
+{% code-tabs %}
+{% code-tabs-item title="edit\_entry.jsp" %}
+```java
+<%--
+Muestra mensajes de exito / error en en input de categorias y etiquetas
+--%>
+<liferay-ui:asset-categories-error />
+<liferay-ui:asset-tags-error />
+...
+<aui:fieldset-group markupView="lexicon">
+    
+    <%--
+    Permite a los usuarios mostrar/ocultar las opciones de introducción de categorias/tags
+    --%>
+    <aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="categorization">
+        <%--
+         Permite a los usuario buscar o seleccionar las categorias
+         Permite crear nuevo etiquetado ...
+        --%> 
+        <aui:input name="categories" type="assetCategories" />
+
+        <aui:input name="tags" type="assetTags" />
+    </aui:fieldset>
+    ...
+</aui:fieldset-group>
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+#### Mostrar categorias
+
+{% code-tabs %}
+{% code-tabs-item title="view.jsp" %}
+```java
+<p><liferay-ui:message key="categories" />:</p>
+
+<div class="entry-categories">
+    <liferay-ui:asset-categories-summary
+        className="<%= BlogsEntry.class.getName() %>"
+        classPK="<%= entry.getEntryId() %>"
+        portletURL="<%= renderResponse.createRenderURL() %>"
+    />
+</div>
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+#### Mostrar etiquetas
+
+{% code-tabs %}
+{% code-tabs-item title="view.jsp" %}
+```java
+<div class="entry-tags">
+    <p><liferay-ui:message key="tags" />:</p>
+
+    <liferay-ui:asset-tags-summary
+        className="<%= BlogsEntry.class.getName() %>"
+        classPK="<%= entry.getEntryId() %>"
+        portletURL="<%= renderResponse.createRenderURL() %>"
+    />
+</div>
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+{% hint style="info" %}
+**portletURL** permite la navegación entre categorias y etiquetas. 
+{% endhint %}
+
+{% hint style="info" %}
+Cada _etiqueta_ que utiliza **portletURL** se convierte en un enlace que contiene la **portletURL** con la **etiqueta** o **categoriaId**.
+{% endhint %}
+
+### Relacionar assets \(AssetLink\)
+
+Contenido relacionado.
+
+#### Requisitos
+
+{% code-tabs %}
+{% code-tabs-item title="service.xml" %}
+```markup
+<reference package-path="com.liferay.portlet.asset" entity="AssetLink" />
+</entity>
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+#### Añadir y actualizar contenido relacionado {#anadir-y-actualizar-assets}
+
+{% code-tabs %}
+{% code-tabs-item title="AssetLinkLocalService" %}
+```java
+assetLinkLocalService.updateLinks(
+    userId, assetEntry.getEntryId(), assetLinkEntryIds,
+    AssetLinkConstants.TYPE_RELATED);
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+#### Eliminar AssetLinks
+
+{% code-tabs %}
+{% code-tabs-item title="\*LocalServiceImpl.java" %}
+```java
+AssetEntry assetEntry = assetEntryLocalService.fetchEntry(
+    ENTITY.class.getName(), ENTITYId);
+
+assetLinkLocalService.deleteLinks(assetEntry.getEntryId());
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+#### Relacional AssetLinks en la JSP
+
+{% code-tabs %}
+{% code-tabs-item title="view.jsp" %}
+```java
+<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="related-assets">
+    <liferay-ui:input-asset-links
+        className="<%= BlogsEntry.class.getName() %>"
+        classPK="<%= entryId %>"
+    />
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+#### Mostrar contenido relacionado
+
+{% code-tabs %}
+{% code-tabs-item title="view.jsp" %}
+```java
+<%
+long insultId = ParamUtil.getLong(renderRequest, "insultId");
+Insult ins = InsultLocalServiceUtil.getInsult(insultId);
+AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(Insult.class.getName(), ins.getInsultId());
+%>
+
+
+<liferay-ui:asset-links
+    assetEntryId="<%=(assetEntry != null) ? assetEntry.getEntryId() : 0%>"
+    className="<%=Insult.class.getName()%>"
+    classPK="<%=ins.getInsultId()%>" />
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+
+
