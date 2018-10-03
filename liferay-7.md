@@ -234,5 +234,56 @@ CRUD en ProyectoLocalServiceImpl y ProyectoServiceImpl
 
 ## BaseMVCActionCommand
 
+## Asset Framework \(Framework de contenidos\)
+
+Permite añadir al núcleo Liferay nuevas prestaciones. Por ejemplo, crear una aplicación para gestionar eventos, con lo que el framework permite añadir a los usuarios etiquetas, categorías o comentarios.
+
+Asset es cualquier contenido del portal: texto, fichero, url, imagen, documentos, entradas de blog, marcadores, wiki, ...
+
+**Añadir / actualizar y eliminar contenidos para las entidades personalizadas**
+
+Para poder invocar un método del Asset Framework, debemos asociar AssetEntry con la entidad que nosotros queramos.
+
+Debe implementarse indexadores a las entidades del portlet. 
+
+#### Requisitos
+
+{% code-tabs %}
+{% code-tabs-item title="service.xml" %}
+```markup
+<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
+</entity>
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+#### Añadir y actualizar assets
+
+{% hint style="info" %}
+\***LocalServiceImpl** hereda de **AssetEntryLocalService**. Ésta esta asignada a la variable **assetEntryLocalService**.
+{% endhint %}
+
+Para añadir entidades personalizadas como un asset de Liferay, debe invocarse **assetEntryLocalService.updateEntry\(\)**
+
+{% code-tabs %}
+{% code-tabs-item title="AssetEntryLocalService.java" %}
+```java
+AssetEntry updateEntry(
+    long userId, long groupId, Date createDate, Date modifiedDate,
+    String className, long classPK, String classUuid, long classTypeId,
+    long[] categoryIds, String[] tagNames, boolean listable,
+    boolean visible, Date startDate, Date endDate, Date publishDate,
+    Date expirationDate, String mimeType, String title,
+    String description, String summary, String url, String layoutUuid,
+    int height, int width, Double priority)
+throws PortalException
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+Después de invocar updateEntry\(\), debe actualizarse el asset y el índice de la entidad.
+
+#### Eliminar assets
+
 
 
