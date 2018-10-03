@@ -285,5 +285,19 @@ Después de invocar updateEntry\(\), debe actualizarse el asset y el índice de 
 
 #### Eliminar assets
 
+Para eliminar entidades personalizadas como un asset de Liferay, debe invocarse **assetEntryLocalService.deleteEntry\(\)**
 
+{% code-tabs %}
+{% code-tabs-item title="\*LocalServiceImpl.java" %}
+```java
+assetEntryLocalService.deleteEntry(
+    ENTITY.class.getName(), ENTITY.getInsultId());
+
+Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(ENTITY.class);
+indexer.delete(ENTITY);
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+Para que el **Asset Publisher de Liferay** muestre la entidad, la entidad debe tener un **Asset Renderer**. 
 
