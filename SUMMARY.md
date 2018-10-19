@@ -13,6 +13,7 @@
 * [Javascript](js/creacion-de-objetos.md)
 * [HTML5 + Canvas](js/html5-+-canvas.md)
 * [mongoDB](js/mongodb.md)
+* [NodeJS](js/nodejs.md)
 * [Webpack](js/webpack.md)
 
 ## Build tools
@@ -22,7 +23,6 @@
 
 ## Liferay
 
-* [NodeJS](liferay/nodejs.md)
 * [Liferay 7](liferay/liferay-7.md)
 * [Liferay 6.2](liferay/liferay-6.2.md)
 * [Liferay 6.1](liferay/liferay-6.1.md)
