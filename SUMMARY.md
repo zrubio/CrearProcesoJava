@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Javascript](README.md)
+* [Development](README.md)
 
 ## Java
 
