@@ -5,8 +5,8 @@
 
 Maneras de crear objetos con JS
 
-1. [Factory function](./#factory-function)
-2. [Constructor](./#constructor)
+1. [Factory function](../#factory-function)
+2. [Constructor](../#constructor)
 
 ## Constantes y variables
 
