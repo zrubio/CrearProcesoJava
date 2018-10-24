@@ -393,7 +393,7 @@ Contenido relacionado.
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-#### Añadir y actualizar contenido relacionado {#anadir-y-actualizar-assets}
+#### Añadir y actualizar contenido relacionado <a id="anadir-y-actualizar-assets"></a>
 
 {% code-tabs %}
 {% code-tabs-item title="AssetLinkLocalService" %}

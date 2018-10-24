@@ -1,13 +1,27 @@
 # Java
 
-## Android
+## Conversión de datos
 
-* MainActivity.java \(Punto de entrada de la app\). El sistema inicia una instancia Activity y carga el diseño.
-* activity\_main.xml \(Define el diseño para la IU de la activity\). 
-* AndroidManifest.xml \(Características de la app y cada uno de los componentes\).
-* build.gradle
-  * Uno para el proyecto
-  * Módulo de la app
+```java
+// String a int
+String numero = "5";
+int n = Integer.getInt(numero);
+// int a String
+int a = 6;
+String as = String.valueOf(a);
+```
+
+#### Casting
+
+```java
+String s = "hola";
+renderRequest.setAttribute("cadena", s);
+
+main.jsp
+<%
+String cadenaRecibida = (String) request.getAttribute("cadena");
+%>
+```
 
 ## Spring framework
 
