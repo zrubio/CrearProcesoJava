@@ -377,5 +377,15 @@ Etiquetado:
 
 
 
+#### Variables volatile
+
+```java
+private volatile Clase _clase;
+
+@Reference(unbind = "-")
+protected void setClase(Clase clase) 
+{this._clase = clase;}
+```
+
 
 
