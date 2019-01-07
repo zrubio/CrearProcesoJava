@@ -50,5 +50,21 @@ $ docker inspect <containerId / friendlyName>
 $ docker logs <containerId / friendlyName>
 ```
 
+### Acceder al contenedor
+
+Si un servicio necesita ser accedido por un proceso que no se está ejecutando en el contenedor, el puerto necesitará estar abierto por el Host.
+
+Los puertos son limitados cuando los contenedores se ejecutan utilizando:
+
+```bash
+-p <host-port>:<container-port>
+```
+
+La mejor manera de arreglarlo es definiendo los puertos cuando vaya a ejecutarse el contenedor:
+
+```text
+$ docker run -d --name redisHostPort -p 6379:6379 redis:latest
+```
+
 
 
