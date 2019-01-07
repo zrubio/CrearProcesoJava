@@ -106,5 +106,17 @@ docker run -d --name redisMapped -v /opt/docker/data/redis:/data redis
 Docker permite el uso del comando $pwd \(directorio actual\)
 {% endhint %}
 
+### Interactuar con el contenedor \(foreground\)
+
+```bash
+# Ejecuta un contenedor Ubuntu y ejecuta el comando PS
+$ docker run ubuntu ps
+```
+
+```bash
+# Obtener acceso con la consola dentro de un contenedor
+$ docker run -it ubuntu bash
+```
+
 
 
