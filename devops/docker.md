@@ -86,5 +86,25 @@ Para conocer en qué puerto se está ejecutando:
 $ docker port redisDynamic 6379
 ```
 
+### Persistencia de los datos
+
+Los contenedores no tienen estado. Así que cuando se elimina un contenedor, toda la información se eliminará. Para hacerla persistente es necesario enlazar el contenedor con alguna unidad de disco o volumen:
+
+Cuando el directorio está montado, los archivos que existen en el directorio del host pueden ser accedidos por el contenedor. Cualquier dato modificado en el directorio dentro del contenedor se almacenará dentro del host.
+
+```bash
+-v <host-dir>:<container-dir>
+```
+
+Ejemplo:
+
+```bash
+docker run -d --name redisMapped -v /opt/docker/data/redis:/data redis
+```
+
+{% hint style="info" %}
+Docker permite el uso del comando $pwd \(directorio actual\)
+{% endhint %}
+
 
 
