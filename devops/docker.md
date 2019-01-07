@@ -66,5 +66,25 @@ La mejor manera de arreglarlo es definiendo los puertos cuando vaya a ejecutarse
 $ docker run -d --name redisHostPort -p 6379:6379 redis:latest
 ```
 
+Por defecto, el puedo en el host está mapeado a 0.0.0.0 \(todas las direcciones IP\). Se puede especificar una IP en el mapeado de puertos: 
+
+```bash
+$ docker run -d --name redisHostPort -p 127.0.0.1:6379:6379
+```
+
+El problema con la ejecución de procesos en un puerto fijo es que sólo puede ejecutar una única instancia. Para ejecutar múltiples instancias deberá configurar la aplicación dependiendo de qué puerto se esté ejecutando.
+
+Utilizando la opción "-p 6379" se habilita un puerto aleatorio. 
+
+```bash
+$ docker run -d --name redisDynamic -p 6379 redis:latest
+```
+
+Para conocer en qué puerto se está ejecutando:
+
+```bash
+$ docker port redisDynamic 6379
+```
+
 
 
