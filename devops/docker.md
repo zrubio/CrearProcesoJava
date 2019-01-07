@@ -30,5 +30,13 @@ $ docker run -d <name>
 $ docker run -d <name>:latest
 ```
 
+### Listar contenedores que están ejecutándose
+
+```bash
+$ docker ps
+CONTAINER ID    IMAGE           COMMAND                  CREATED         STATUS       PORTS       NAMES
+fed7b9519e04    redis:latest    "docker-entrypoint.s…"   8 minutes ago   Up 8 minutes 6379/tcp    jolly_tesla
+```
+
 
 
