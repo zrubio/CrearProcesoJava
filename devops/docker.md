@@ -38,5 +38,17 @@ CONTAINER ID    IMAGE           COMMAND                  CREATED         STATUS 
 fed7b9519e04    redis:latest    "docker-entrypoint.s…"   8 minutes ago   Up 8 minutes 6379/tcp    jolly_tesla
 ```
 
+### Consultar detalles de un contenedor ejecutándose
+
+```bash
+$ docker inspect <containerId / friendlyName>
+```
+
+### Consultar mensajes que el contenedor ha escrito en la salida estándar
+
+```text
+$ docker logs <containerId / friendlyName>
+```
+
 
 
