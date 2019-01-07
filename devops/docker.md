@@ -1,5 +1,7 @@
 # Docker
 
+## Desplegando en Docker
+
 ### Buscar imagen en Docker
 
 ```bash
@@ -117,6 +119,8 @@ $ docker run ubuntu ps
 # Obtener acceso con la consola dentro de un contenedor
 $ docker run -it ubuntu bash
 ```
+
+## Construyendo imágenes de contenedor
 
 
 
