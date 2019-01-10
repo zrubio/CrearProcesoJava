@@ -155,5 +155,79 @@ FROM
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+### Instrucciones
+
+#### FROM
+
+Inicializa una nueva construcción con una imagen base.
+
+{% code-tabs %}
+{% code-tabs-item title="Dockerfile" %}
+```text
+# Método 1
+FROM <imagen> [AS <nombre>]
+# Método 2
+FROM <imagen>[:<tag>] [AS <nombre>]
+# Método 3
+FROM <imagen>[@<digest>] [AS <nombre>]
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+{% code-tabs %}
+{% code-tabs-item title="Dockerfile" %}
+```text
+FROM oracle/openjdk:8
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+#### RUN
+
+Ejecuta cualquier comando en una nueva capa por encima de la imagen actual y hace _commit_ de los resultados.
+
+```text
+# Método 1
+# 1 Linux /bin/sh -c
+# 2 Windows cmd /S /C
+RUN <comando>
+# Método 2
+RUN ["executable","parametro1","parametro2"]
+```
+
+```bash
+RUN /bin/bash -c 'javac Hello.java'
+```
+
+#### CMD
+
+#### LABEL
+
+#### EXPOSE
+
+#### ENV
+
+#### ADD
+
+#### COPY
+
+#### ENTRYPOINT
+
+#### VOLUME
+
+#### USER
+
+#### WORKDIR
+
+#### ARG
+
+#### ONBUILD
+
+#### STOPSIGNAL
+
+#### HEALTHCHECK
+
+#### SHELL
+
 ## Docker compose
 
