@@ -346,3 +346,54 @@ STOPSIGNAL señal (SIGKILL)
 
 ## Docker compose
 
+{% code-tabs %}
+{% code-tabs-item title="docker-compose.yml" %}
+```yaml
+version: '3.7'
+
+services:
+
+  database-mysql:
+    image: mysql:57
+    restart: ["no",on-failure,always,unless-stopped]
+    container_name: mysql-db-app
+    environment:
+      MYSQL_ROOT_PASSWORD: liferay
+      MYSQL_USER: liferay
+      MYSQL_PASSWORD: test
+      MYSQL_DATABASE: test
+    ports:
+      - "3307:3306"
+    expose:
+      - "3306"
+    networks:
+      - "external"
+      - "services-only"
+
+  liferay:
+    restart: ["no",on-failure,always,unless-stopped]
+    image: mdelapenya/liferay-portal:7-ce-ga7
+    container_name: liferay-app
+    ports:
+      - "8080:8080"
+      - "11311:11311"
+    networks:
+      - "external"
+      - "services-only"
+    environment:
+      LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_DRIVER_UPPERCASEC_LASS_UPPERCASEN_AME: com.mysql.jdbc.Driver
+      LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_URL: jdbc:mysql://mysql-db-app:3307/lportal?characterEncoding=UTF-8
+      LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_USERNAME: test
+      LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_PASSWORD: test
+    depends_on:
+      - database-mysql
+
+networks:
+  services-only:
+    internal: true
+  external:
+    internal: false
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
