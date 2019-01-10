@@ -381,10 +381,10 @@ services:
       - "external"
       - "services-only"
     environment:
-      LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_DRIVER_UPPERCASEC_LASS_UPPERCASEN_AME: com.mysql.jdbc.Driver
-      LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_URL: jdbc:mysql://mysql-db-app:3307/lportal?characterEncoding=UTF-8
-      LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_USERNAME: test
-      LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_PASSWORD: test
+      LIFERAY_JDBC_DEFAULT_DRIVER: com.mysql.jdbc.Driver
+      LIFERAY_JDBC_DEFAULT_URL: jdbc:mysql://mysql-db-app:3307/lportal?characterEncoding=UTF-8
+      LIFERAY_JDBC_DEFAULT_USERNAME: test
+      LIFERAY_JDBC_DEFAULT_PASSWORD: test
     depends_on:
       - database-mysql
 
