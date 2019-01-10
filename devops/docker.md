@@ -201,29 +201,144 @@ RUN /bin/bash -c 'javac Hello.java'
 
 #### CMD
 
+Sólo puede haber una instrucción CMD en Dockerfile. Si hay un listado de instrucciones CMD, sólo se ejecutará el último.
+
+Instrucción que se ejecuta cuando se ejecuta el contenedor.
+
+{% code-tabs %}
+{% code-tabs-item title="Dockerfile" %}
+```text
+# Esta es la manera más usada
+CMD ["java","Hello"]
+# Parametros por defecto para ENTRYPOINT
+CMD ["1","2"]
+# Manera Shell
+CMD comando parametro1 parametro2
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
 #### LABEL
+
+Añade metadatos a una imagen.
+
+{% code-tabs %}
+{% code-tabs-item title="Dockerfile" %}
+```text
+LABEL "com.zrubio.app"="App"
+LABEL version="7.0"
+LABEL description="Descripción de la app \
+multilinea."
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 #### EXPOSE
 
+Define que el contenedor escuchará por el puerto definido en tiempo de ejecución. Puede ser TCP u UDP.
+
+{% code-tabs %}
+{% code-tabs-item title="Dockerfile" %}
+```text
+EXPOSE 80/tcp
+EXPOSE 80/udp
+EXPOSE 80
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+```bash
+$ docker run -p 80:80/tcp 80:80/udp zrubio/helloworldjdk8
+```
+
 #### ENV
+
+Define las variables de entorno
+
+```text
+END JAVA_HOME=C:\Program Files\Java\jdk1.8.0_192
+```
 
 #### ADD
 
+Permite copia nuevos archivos, directorios tanto locales como remotos y los añade al sistema de archivos de la imagen
+
+Permite gestionar usuarios y permisos
+
+{% code-tabs %}
+{% code-tabs-item title="Dockerfile" %}
+```text
+ADD . /app
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
 #### COPY
+
+Permite copia nuevos archivos, directorios tanto locales como remotos y los añade al sistema de archivos de la imagen
+
+Permite gestionar usuarios y permisos
+
+```text
+COPY ./app
+```
 
 #### ENTRYPOINT
 
+Permite configurar un contenedor que arrancará como un ejecutable.
+
+{% code-tabs %}
+{% code-tabs-item title="Dockerfile" %}
+```text
+# Utilizar la imagen OpenJDK 8
+FROM oracle/openjdk:8
+# Definir el directorio de trabajo
+WORKDIR /app
+# Copiar el contenido de la carpeta actual a /app (contenedor)
+COPY . /app
+# Compila el código fuente de Hello.java
+ENTRYPOINT javac Hello.java
+# Puerto interno del contenedor
+EXPOSE 80
+# Ejecución del programa compilado pasando un argumento
+CMD ["java", "Hello"]
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+```bash
+$ docker run -i -t --rm -p 80:80 zrubio/helloworldjdk8
+```
+
 #### VOLUME
+
+Crea puntos de montaje 
+
+```text
+VOLUME ["/data"]
+```
 
 #### USER
 
 #### WORKDIR
+
+Definir el directorio de trabajo
+
+```text
+WORKDIR /liferay
+```
 
 #### ARG
 
 #### ONBUILD
 
 #### STOPSIGNAL
+
+Define una llamada del sistema para salir del contenedor.
+
+```text
+STOPSIGNAL señal (SIGKILL)
+```
 
 #### HEALTHCHECK
 
