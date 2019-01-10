@@ -1,4 +1,4 @@
-# Liferay 7
+# Liferay DXP 7.0
 
 ## Instalación
 

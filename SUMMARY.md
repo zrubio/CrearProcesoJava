@@ -23,11 +23,19 @@
 
 ## Liferay
 
-* [Liferay 7](liferay/liferay-7.md)
+* [Liferay DXP 7.1](liferay/liferay-dxp-7.1.md)
+* [Liferay DXP 7.0](liferay/liferay-7.md)
 * [Liferay 6.2](liferay/liferay-6.2.md)
 * [Liferay 6.1](liferay/liferay-6.1.md)
 
 ## DevOps
 
 * [Docker](devops/docker.md)
+* [Jenkins](devops/jenkins.md)
+
+## Programming languages
+
+* [Java](programming-languages/java.md)
+* [Python](programming-languages/python.md)
+* [Go](programming-languages/go.md)
 

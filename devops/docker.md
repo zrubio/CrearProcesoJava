@@ -1,5 +1,7 @@
 # Docker
 
+## Docker
+
 ## Desplegando en Docker
 
 ### Buscar imagen en Docker
@@ -120,7 +122,38 @@ $ docker run ubuntu ps
 $ docker run -it ubuntu bash
 ```
 
-## Construyendo imágenes de contenedor
+## Dockerfile
 
+Define todos los pasos necesarios para crear una imagen con Docker configurada para ejecutarse como un contenedor. La imagen contiene en sí misma un SO y la configuración necesaria para poder ejecutar la aplicación.
 
+Todas las imágenes de Docker empiezan con una imagen base. Las imágenes base son las imágenes del Docker Registry utilizadas para iniciar contenedores. 
+
+Dockerfile está escrito con DSL \(Domain Specific Language\)
+
+{% code-tabs %}
+{% code-tabs-item title="Dockerfile" %}
+```text
+# Utilizar la imagen OpenJDK 8
+FROM oracle/openjdk:8
+# Definir el directorio de trabajo
+WORKDIR /app
+# Copiar el contenido de la carpeta actual a /app (contenedor)
+COPY . /app
+# Compila el código fuente de Hello.java
+RUN javac Hello.java
+# Puerto interno del contenedor
+EXPOSE 80
+# Ejecución del programa compilado pasando un argumento
+CMD ["java", "Hello"]
+```
+{% endcode-tabs-item %}
+
+{% code-tabs-item title=undefined %}
+```
+FROM 
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+## Docker compose
 
