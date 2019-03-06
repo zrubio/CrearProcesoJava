@@ -18,3 +18,7 @@ module.framework.properties.lpkg.index.validator.enabled=false
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+Disable validate LPKG
+
+[https://community.liferay.com/de/blogs/-/blogs/disabling-lpkg-index-validation](https://community.liferay.com/de/blogs/-/blogs/disabling-lpkg-index-validation)
+
